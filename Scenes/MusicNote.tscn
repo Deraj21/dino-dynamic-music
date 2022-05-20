@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://pixel-art/music notes/note-green.png" type="Texture" id=1]
+[ext_resource path="res://pixel-art/music notes/note-red.png" type="Texture" id=2]
+[ext_resource path="res://pixel-art/music notes/note-yellow.png" type="Texture" id=3]
+[ext_resource path="res://pixel-art/music notes/note-blue.png" type="Texture" id=4]
+[ext_resource path="res://pixel-art/music notes/note-orange.png" type="Texture" id=5]
+[ext_resource path="res://pixel-art/music notes/note-purple.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/MusicNote.gd" type="Script" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 9.0
+height = 8.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "blue",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "green",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "orange",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "red",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "purple",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "yellow",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "bounce"
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="MusicNote" type="Area2D"]
+collision_layer = 4
+script = ExtResource( 7 )
+color = "purple"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+animation = "blue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/bounce = SubResource( 4 )
+anims/fade_out = SubResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

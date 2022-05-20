@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=1]
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=2]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
+[ext_resource path="res://Music/Dino Synth/chorus.wav" type="AudioStream" id=4]
+[ext_resource path="res://Music/Dino Synth/percussion.wav" type="AudioStream" id=5]
+[ext_resource path="res://Music/Dino Synth/chords.wav" type="AudioStream" id=6]
+
+[node name="MixingDesk" type="Node"]
+script = ExtResource( 1 )
+play_mode = 4
+
+[node name="DinoSynth" type="Node" parent="."]
+script = ExtResource( 2 )
+tempo = 100
+bars = 12
+beats_in_bar = 4
+transition_beats = 2.0
+
+[node name="CoreContainer" type="Node" parent="DinoSynth"]
+script = ExtResource( 3 )
+
+[node name="chords" type="AudioStreamPlayer" parent="DinoSynth/CoreContainer"]
+stream = ExtResource( 6 )
+
+[node name="chorus" type="AudioStreamPlayer" parent="DinoSynth/CoreContainer"]
+stream = ExtResource( 4 )
+
+[node name="percussion" type="AudioStreamPlayer" parent="DinoSynth/CoreContainer"]
+stream = ExtResource( 5 )
