@@ -6,7 +6,9 @@
 
 This is a prototype of a game in-the-works. It features a Dino that that collects music notes; each time a note is collected, a new instrument of the music arrangement is added to the "ensemble".
 
-It is still very much in the early stages of development, but I wanted to get a working prototype out as fast as possible. I created this project out of a desire to learn the Godot gaming engine.
+It is still very much in the early stages of development, but I wanted to get a working prototype out as fast as possible.
+
+I created this project out of a desire to learn the Godot gaming engine.
 
 ---
 

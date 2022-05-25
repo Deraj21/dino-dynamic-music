@@ -8,3 +8,8 @@ export_presets.cfg
 .mono/
 
 *.import
+
+
+# Builds
+Web
+Marketing
